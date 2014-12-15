@@ -93,3 +93,5 @@ class Transform:
     SHA256 = _mkti(xmlSecTransformSha256Id)
     SHA384 = _mkti(xmlSecTransformSha384Id)
     SHA512 = _mkti(xmlSecTransformSha512Id)
+    GOST3410_2001_3411_94 = _mkti(xmlSecTransformGost2001GostR3411_94Id)
+    GOST3411_94 = _mkti(xmlSecTransformGostR3411_94Id)
