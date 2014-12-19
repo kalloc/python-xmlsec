@@ -44,6 +44,22 @@ def add_reference(
     return elementFactory(node._doc, c_node)
 
 
+def manifest_add_reference(
+        _Element node not None,
+        _Transform digest_method not None,
+        id=None, uri=None, type=None):
+
+    cdef xmlNode* c_node
+    cdef const_xmlChar* c_id = _b(id)
+    cdef const_xmlChar* c_uri = _b(uri)
+    cdef const_xmlChar* c_type = _b(type)
+
+    c_node = xmlSecTmplManifestAddReference(
+        node._c_node, digest_method.target, c_id, c_uri, c_type)
+
+    return elementFactory(node._doc, c_node)
+
+
 def add_transform(_Element node not None, _Transform transform not None):
     cdef xmlNode* c_node
 
@@ -88,4 +104,27 @@ def add_x509_data(_Element node not None):
 
     c_node = xmlSecTmplKeyInfoAddX509Data(node._c_node)
 
+    return elementFactory(node._doc, c_node)
+
+def add_manifest(
+        _Element node not None,
+        id=None):
+
+    cdef xmlNode* c_node
+    cdef const_xmlChar* c_id = _b(id)
+
+    c_node = xmlSecTmplObjectAddManifest(
+        node._c_node, c_id)
+
+    return elementFactory(node._doc, c_node)
+
+def add_object(
+        _Element node not None, id=None, mimeType=None, encoding=None):
+
+    cdef xmlNode* c_node
+    cdef const_xmlChar* c_id = _b(id)
+    cdef const_xmlChar* c_mimeType = _b(mimeType)
+    cdef const_xmlChar* c_encoding = _b(encoding)
+
+    c_node = xmlSecTmplSignatureAddObject(node._c_node, c_id, c_mimeType, c_encoding)
     return elementFactory(node._doc, c_node)

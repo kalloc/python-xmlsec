@@ -12,6 +12,10 @@ cdef extern from "xmlsec.h":  # xmlsec/templates.h
         xmlNode* node, xmlSecTransformId digest,
         const_xmlChar* id, const_xmlChar* uri, const_xmlChar* type) nogil
 
+    xmlNode* xmlSecTmplManifestAddReference(
+        xmlNode* node, xmlSecTransformId digest,
+        const_xmlChar* id, const_xmlChar* uri, const_xmlChar* type) nogil
+
     xmlNode* xmlSecTmplReferenceAddTransform(
         xmlNode* node, xmlSecTransformId transform) nogil
 
@@ -23,3 +27,8 @@ cdef extern from "xmlsec.h":  # xmlsec/templates.h
     xmlNode* xmlSecTmplKeyInfoAddKeyValue(xmlNode* node) nogil
 
     xmlNode* xmlSecTmplKeyInfoAddX509Data(xmlNode* node) nogil
+
+    xmlNode* xmlSecTmplSignatureAddObject(xmlNode* node, const_xmlChar* id,
+            const_xmlChar* mimeType, const_xmlChar* encoding) nogil
+    
+    xmlNode* xmlSecTmplObjectAddManifest(xmlNode* node, const_xmlChar* id) nogil
